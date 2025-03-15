@@ -71,7 +71,8 @@ def update_book_status(book_id, issued):
     session.close()
 
 def fetch_books_api(query):
-    url = f"https://www.googleapis.com/books/v1/volumes?q={query}"
+    api_key = st.secrets["books_api"]
+    url = f"https://www.googleapis.com/books/v1/volumes?q={query}&key={api_key}&country=US"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
